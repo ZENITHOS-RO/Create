@@ -1,0 +1,87 @@
+local Teams = {}
+
+local S_Team = game:GetService("Teams")
+local Players = game:GetService("Players")
+
+function Teams:Create(teamName : string, teamColor : BrickColor, priority : number, autoAssign : boolean)
+	if teamName == "" then return end
+	if teamColor == nil then return end
+	if priority == nil then return end
+	
+	local teamInstance = Instance.new("Team")
+	teamInstance.Name = teamName
+	teamInstance.TeamColor = teamColor
+	teamInstance:SetAttribute("priority", priority)
+	
+	teamInstance.AutoAssignable = autoAssign
+	teamInstance.Parent = game:GetService("Teams")
+end
+
+function Teams:Remove(teamName : string)
+	if teamName == "" then return end
+	if not S_Team:FindFirstChild(tostring(teamName)) then return end
+	
+	local teamInstance = S_Team:WaitForChild(tostring(teamName))
+	teamInstance:Destroy()
+end
+
+function Teams:Void(teamName : string, except : Players)
+	if teamName == "" then return end
+	if not S_Team:FindFirstChild(tostring(teamName)) then return end
+	
+	local teamInstance = S_Team:WaitForChild(tostring(teamName))
+	
+	if except ~= nil then
+		local getPlayers = Players:GetChildren()
+		
+		for _, Players in pairs(getPlayers) do
+			if Players.Name ~= except.Name then
+				Players.Neutral = true
+				Players.Team = nil
+				Players.TeamColor = BrickColor.new("White")
+			end
+		end
+	else
+		local getPlayers = Players:GetChildren()
+
+		for _, Players in pairs(getPlayers) do
+			Players.Neutral = true
+			Players.Team = nil
+			Players.TeamColor = BrickColor.new("White")
+		end
+	end
+end
+
+
+function Teams:setNeutral(target : Players)
+	if target == nil then return end
+	
+	local getPlayers = Players:GetChildren()
+
+	for _, Players in pairs(getPlayers) do
+		if Players.Name == target.Name then
+			Players.Neutral = true
+			Players.Team = nil
+			Players.TeamColor = BrickColor.new("White")
+		end
+	end
+end
+
+function Teams:movePlayer(target : Players, teamName : string)
+	if target == nil then return end
+	if teamName == nil then return end
+	if not S_Team:FindFirstChild(tostring(teamName)) then return end
+	
+	
+	local teamInstance = S_Team:WaitForChild(tostring(teamName))
+	local getPlayers = Players:GetChildren()
+
+	for _, Players in pairs(getPlayers) do
+		if Players.Name == target.Name then
+			Players.Team = teamInstance
+			Players.TeamColor = teamInstance.TeamColor
+		end
+	end
+end
+
+return Teams
