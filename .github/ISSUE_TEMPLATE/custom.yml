@@ -6,8 +6,8 @@
   - ROBLOX-ATLAS-GAMES
 - body:
   - type: markdown
-    attributes:
-      value: |
+    - attributes:
+      - value: |
         Thanks for taking the time to fill out this bug report!
         
         Before reporting, please make sure that there isn't a similar opened issue.
@@ -16,13 +16,13 @@
         Do not contains any Swearing Words unless this's a bug reproduce steps, and keep your inputs neat.
         We reserve the rights to ignore your issues without fixing.
 - type: textarea
-  id: bug-description
-  attributes:
-    label: Bug Description
-    description: Explain what kind of bug did you encounter, and detailed information.
-    placeholder: Explain carefully to Developer so we can immediately resolve the issues. If the description is too messy or contains any swearing words, your Issue will be ignored.
-  validations:
-    required: true
+  - id: bug-description
+  - attributes:
+    - label: Bug Description
+    - description: Explain what kind of bug did you encounter, and detailed information.
+    - placeholder: Explain carefully to Developer so we can immediately resolve the issues. If the description is too messy or contains any swearing words, your Issue will be ignored.
+  - validations:
+    - required: true
 - type: textarea
   id: reproduce-steps
   attributes:
