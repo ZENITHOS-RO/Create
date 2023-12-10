@@ -1,3 +1,5 @@
+##### ©2023 ATLAS CORPORATION // CREATE // ISSUE REPORT TEMPLATE BY SUPERPROINFINITY // ALL RIGHT RESERVED #####
+
 name: Issue Report
 description: File a Bug or Fatal issues
 title: "[Issue]: "
@@ -83,3 +85,5 @@ body:
         required: true
       - label: "I was using or running the latest version (DEMO 1.0)"
         required: true
+
+##### ©2023 ATLAS CORPORATION // CREATE // ISSUE REPORT TEMPLATE BY SUPERPROINFINITY // ALL RIGHT RESERVED #####
