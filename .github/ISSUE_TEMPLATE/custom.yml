@@ -4,7 +4,7 @@
 - labels: ["Bug", "triage" ]
 - assignees:
     - ROBLOX-ATLAS-GAMES
-- body:
+body:
 - type: markdown
   attributes:
     value: |
