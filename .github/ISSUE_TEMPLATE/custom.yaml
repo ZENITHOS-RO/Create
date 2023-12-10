@@ -1,4 +1,4 @@
-name: Bug Report
+name: "Bug Report"
 description: File a Bug or Fatal issues
 title: "[Issue]: "
 labels: ["Bug"]
