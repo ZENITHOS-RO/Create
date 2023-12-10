@@ -1,8 +1,7 @@
-name: Report Issues
+name: Issue Report
 description: File a Bug or Fatal issues
 title: "[Issue]: "
 labels: ["Bug"]
-projects: ["CreateAPI", "CreateClient", "CreateServerSoftware"]
 assignees:
   - ROBLOX-ATLAS-GAMES
 body:
@@ -10,55 +9,67 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
-  - type: input
-    id: contact
+        
+        Before reporting, please make sure that there isn't a similar opened issue.
+        And please check out FAQ to find a solution. If not possible, you may file a Issue Report.
+
+        Do not contains any Swearing Words unless this's a bug reproduce steps, and keep your inputs neat.
+        We reserve the rights to ignore your issues without fixing.
+- type: textarea
+    id: bug-description
     attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
+      label: Bug Description
+      description: Explain what kind of bug did you encounter, and detailed information.
+      placeholder: Explain carefully to Developer so we can immediately resolve the issues. If the description is too messy or contains any swearing words, your Issue will be ignored.
+      value: ""
     validations:
-      required: false
+      required: true
   - type: textarea
-    id: what-happened
+    id: reproduce-steps
     attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      label: Reproduce Steps
+      description: How did you trigger this bug? Please walk us through it step by step. This may include a video, or detailed instructions to help reconstruct the issue.
+      placeholder: Explain steps carefully to Developer so we can immediately find and track the issues. If the steps is too messy or steps were not reproduced correctly, your Issue will be ignored.
     validations:
       required: true
   - type: dropdown
     id: version
     attributes:
       label: Version
-      description: What version of our software are you running?
+      description: What version of our software are you running? (Old Versions are not supported. But if there is a security issues, please report it.)
       options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
+        - DEMO 1.0 (Latest)
       default: 0
     validations:
       required: true
   - type: dropdown
-    id: browsers
+    id: softwares
     attributes:
-      label: What browsers are you seeing the problem on?
+      label: What kind of Modules caused the issues?
       multiple: true
       options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
+        - CreateClient (CC)
+        - CreateServerSoftware (CSS)
+        - CreateAPI (CAPI)
   - type: textarea
-    id: logs
+    id: error-logs
     attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      label: Error Logs
+      description: Please copy and paste the error logs that caused the issues.
       render: shell
   - type: checkboxes
-    id: terms
+    id: terms-agrement
     attributes:
-      label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      label: Term Agreements
+      description: By submitting this issue, you agree to follow our [Create ToS](https://atlas-corporations.gitbook.io/create/tos) and [CreateAPI](https://atlas-corporations.gitbook.io/create-api/tou) ToS.
       options:
-        - label: I agree to follow this project's Code of Conduct
+        - label: "I agree to follow Create ToS and CreateAPI ToS and this Form Rules."
           required: true
+        - label: "I have searched and ensured that there is isn't an similar opened issue regarding this"
+          required: true
+        - label: "I have searched and ensured that there isn't a possible solution from FAQ"
+          required: true
+        - label: "I was using or running the latest version (DEMO 1.0)"
+          required: true
+
+##### ©2023 ATLAS CORPORATION // CREATE // ISSUE REPORT TEMPLATE BY SUPERPROINFINITY // ALL RIGHT RESERVED
