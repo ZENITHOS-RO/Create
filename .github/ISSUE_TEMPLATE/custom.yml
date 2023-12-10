@@ -1,10 +1,10 @@
-- name: "Bug Reports"
-- description: "File a Bug or Fatal issues"
-- title: "[Issue]: "
-- labels: ["Bug"]
-- assignees:
+name: "Bug Reports"
+description: "File a Bug or Fatal issues"
+title: "[Issue]: "
+labels: ["Bug"]
+assignees:
   - ROBLOX-ATLAS-GAMES
-- body:
+body:
   - type: markdown
     attributes:
       value: |
