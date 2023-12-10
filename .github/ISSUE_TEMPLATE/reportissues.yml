@@ -1,4 +1,4 @@
-name: Bug Reports
+name: Issue Report
 description: File a Bug or Fatal issues
 title: "[Issue]: "
 labels: ["Bug", "triage" ]
@@ -20,42 +20,56 @@ body:
   attributes:
     label: Bug Description
     description: Explain what kind of bug did you encounter, and detailed information.
-    placeholder: Explain carefully to Developer so we can immediately resolve the issues. If the description is too messy or contains any swearing words, your Issue will be ignored.
+  validations:
+    required: true
+- type: textarea
+  id: additional-proofs
+  attributes:
+    label: Additional Proofs
+    description: Please provide one Images or Videos proofs if possible.
   validations:
     required: true
 - type: textarea
   id: reproduce-steps
   attributes:
     label: Reproduce Steps
-    description: How did you trigger this bug? Please walk us through it step by step. This may include a video, or detailed instructions to help reconstruct the issue.
-    placeholder: Explain steps carefully to Developer so we can immediately find and track the issues. If the steps is too messy or steps were not reproduced correctly, your Issue will be ignored.
+    description: How did you trigger this bug? Please explain it step by step in Ordered List or atleast a Video proof, and provide the expected behaviour.
   validations:
     required: true
-- type: dropdown
-  id: version
-  attributes:
-    label: Version
-    description: What version of our software are you running? (Old Versions are not supported. But if there is a security issues, please report it.)
-    options:
-    - DEMO 1.0 (Latest)
-    default: 0
-  validations:
-    required: true
-- type: dropdown
-  id: softwares
-  attributes:
-    label: What kind of Modules caused the issues?
-    multiple: true
-    options:
-      - CreateClient (CC)
-      - CreateServerSoftware (CSS)
-      - CreateAPI (CAPI)
 - type: textarea
   id: error-logs
   attributes:
     label: Error Logs
     description: Please copy and paste the error logs that caused the issues.
     render: shell
+- type: input
+  attributes:
+    label: Error Log ID
+    description: Provide a Error Log ID given after the Error Message if possible.
+    placeholder: "ABCD-EF12-3456-7890 (HEX-HEX-HEX-CODE)"
+  validations:
+    required: false
+- type: input
+  attributes:
+    label: Modules
+    description: What kind of Create Modules caused the issues?
+    placeholder: "CreateClient / CreateServerSoftware / CreateAPI / Others (Provide a module name)"
+  validations:
+    required: false
+- type: input
+  attributes:
+    label: Module Versions
+    description: What version of Create Modules that you selected are using? **(<Latest> is not a version!)**
+    placeholder: "e.g. CreateClient DEMO 1.0.0, CreateServerSoftware DEMO 1.0.0, CreateAPI DEMO 1.0.0"
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: World Location
+    description: Provide the World Location if you selected CreateClient or CreateAPI.
+    placeholder: "0.0.0.0/0000 (LOCATION/PORT)"
+  validations:
+    required: false
 - type: checkboxes
   id: terms-agrement
   attributes:
