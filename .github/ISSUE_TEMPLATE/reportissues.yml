@@ -23,13 +23,6 @@ body:
   validations:
     required: true
 - type: textarea
-  id: additional-proofs
-  attributes:
-    label: Additional Proofs
-    description: Please provide one Images or Videos proofs if possible.
-  validations:
-    required: true
-- type: textarea
   id: reproduce-steps
   attributes:
     label: Reproduce Steps
@@ -53,9 +46,9 @@ body:
   attributes:
     label: Modules
     description: What kind of Create Modules caused the issues?
-    placeholder: "CreateClient / CreateServerSoftware / CreateAPI / Others (Provide a module name)"
+    placeholder: "CreateClient / CreateServerSoftware / CreateAPI / Others"
   validations:
-    required: false
+    required: true
 - type: input
   attributes:
     label: Module Versions
@@ -68,6 +61,12 @@ body:
     label: World Location
     description: Provide the World Location if you selected CreateClient or CreateAPI.
     placeholder: "0.0.0.0/0000 (LOCATION/PORT)"
+  validations:
+    required: false
+- type: input
+  attributes:
+    label: Additional Notes
+    description: Provide a Additional Notes if necessary
   validations:
     required: false
 - type: checkboxes
