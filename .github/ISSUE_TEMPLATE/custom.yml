@@ -1,8 +1,8 @@
-name: "Bug Reports"
-description: "File a Bug or Fatal issues"
-title: "[Issue]: "
-labels: ["Bug", "triage" ]
-assignees:
+- name: Bug Reports
+- description: File a Bug or Fatal issues
+- title: "[Issue]: "
+- labels: ["Bug", "triage" ]
+- assignees:
     - ROBLOX-ATLAS-GAMES
 - body:
   - type: markdown
