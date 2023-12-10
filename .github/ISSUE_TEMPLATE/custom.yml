@@ -15,58 +15,58 @@
 
         Do not contains any Swearing Words unless this's a bug reproduce steps, and keep your inputs neat.
         We reserve the rights to ignore your issues without fixing.
-- type: textarea
-  id: bug-description
-  attributes:
-    label: Bug Description
-    description: Explain what kind of bug did you encounter, and detailed information.
-    placeholder: Explain carefully to Developer so we can immediately resolve the issues. If the description is too messy or contains any swearing words, your Issue will be ignored.
-  validations:
-    required: true
-- type: textarea
-  id: reproduce-steps
-  attributes:
-    label: Reproduce Steps
-    description: How did you trigger this bug? Please walk us through it step by step. This may include a video, or detailed instructions to help reconstruct the issue.
-    placeholder: Explain steps carefully to Developer so we can immediately find and track the issues. If the steps is too messy or steps were not reproduced correctly, your Issue will be ignored.
-  validations:
-    required: true
-- type: dropdown
-  id: version
-  attributes:
-    label: Version
-    description: What version of our software are you running? (Old Versions are not supported. But if there is a security issues, please report it.)
-    options:
-      - DEMO 1.0 (Latest)
-    default: 0
-  validations:
-    required: true
-- type: dropdown
-  id: softwares
-  attributes:
-    label: What kind of Modules caused the issues?
-    multiple: true
-    options:
-      - CreateClient (CC)
-      - CreateServerSoftware (CSS)
-      - CreateAPI (CAPI)
-- type: textarea
-  id: error-logs
-  attributes:
-    label: Error Logs
-    description: Please copy and paste the error logs that caused the issues.
-    render: shell
-- type: checkboxes
-  id: terms-agrement
-  attributes:
-    label: Term Agreements
-    description: By submitting this issue, you agree to follow our [Create ToS](https://atlas-corporations.gitbook.io/create/tos) and [CreateAPI](https://atlas-corporations.gitbook.io/create-api/tou) ToS.
-    options:
-      - label: "I agree to follow Create ToS and CreateAPI ToS and this Form Rules."
-        required: true
-      - label: "I have searched and ensured that there is isn't an similar opened issue regarding this"
-        required: true
-      - label: "I have searched and ensured that there isn't a possible solution from FAQ"
-        required: true
-      - label: "I was using or running the latest version (DEMO 1.0)"
-        required: true
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: Explain what kind of bug did you encounter, and detailed information.
+      placeholder: Explain carefully to Developer so we can immediately resolve the issues. If the description is too messy or contains any swearing words, your Issue will be ignored.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: Reproduce Steps
+      description: How did you trigger this bug? Please walk us through it step by step. This may include a video, or detailed instructions to help reconstruct the issue.
+      placeholder: Explain steps carefully to Developer so we can immediately find and track the issues. If the steps is too messy or steps were not reproduced correctly, your Issue will be ignored.
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running? (Old Versions are not supported. But if there is a security issues, please report it.)
+      options:
+        - DEMO 1.0 (Latest)
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: softwares
+    attributes:
+      label: What kind of Modules caused the issues?
+      multiple: true
+      options:
+        - CreateClient (CC)
+        - CreateServerSoftware (CSS)
+        - CreateAPI (CAPI)
+  - type: textarea
+    id: error-logs
+    attributes:
+      label: Error Logs
+      description: Please copy and paste the error logs that caused the issues.
+      render: shell
+  - type: checkboxes
+    id: terms-agrement
+    attributes:
+      label: Term Agreements
+      description: By submitting this issue, you agree to follow our [Create ToS](https://atlas-corporations.gitbook.io/create/tos) and [CreateAPI](https://atlas-corporations.gitbook.io/create-api/tou) ToS.
+      options:
+        - label: "I agree to follow Create ToS and CreateAPI ToS and this Form Rules."
+          required: true
+        - label: "I have searched and ensured that there is isn't an similar opened issue regarding this"
+          required: true
+        - label: "I have searched and ensured that there isn't a possible solution from FAQ"
+          required: true
+        - label: "I was using or running the latest version (DEMO 1.0)"
+          required: true
