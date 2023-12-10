@@ -3,7 +3,7 @@
 - title: "[Issue]: "
 - labels: ["Bug", "triage" ]
 - assignees:
-  - ROBLOX-ATLAS-GAMES
+    - ROBLOX-ATLAS-GAMES
 - body:
   - type: markdown
     attributes:
