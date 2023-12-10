@@ -1,5 +1,5 @@
 name: "Bug Report"
-description: File a Bug or Fatal issues
+description: "File a Bug or Fatal issues"
 title: "[Issue]: "
 labels: ["Bug"]
 assignees:
@@ -24,7 +24,7 @@ body:
       value: ""
     validations:
       required: true
-  - type: textarea
+- type: textarea
     id: reproduce-steps
     attributes:
       label: Reproduce Steps
@@ -32,7 +32,7 @@ body:
       placeholder: Explain steps carefully to Developer so we can immediately find and track the issues. If the steps is too messy or steps were not reproduced correctly, your Issue will be ignored.
     validations:
       required: true
-  - type: dropdown
+- type: dropdown
     id: version
     attributes:
       label: Version
@@ -42,7 +42,7 @@ body:
       default: 0
     validations:
       required: true
-  - type: dropdown
+- type: dropdown
     id: softwares
     attributes:
       label: What kind of Modules caused the issues?
@@ -51,13 +51,13 @@ body:
         - CreateClient (CC)
         - CreateServerSoftware (CSS)
         - CreateAPI (CAPI)
-  - type: textarea
+- type: textarea
     id: error-logs
     attributes:
       label: Error Logs
       description: Please copy and paste the error logs that caused the issues.
       render: shell
-  - type: checkboxes
+- type: checkboxes
     id: terms-agrement
     attributes:
       label: Term Agreements
