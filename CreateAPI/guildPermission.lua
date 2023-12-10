@@ -2,8 +2,8 @@ local guildPermission = {}
 export type pluginPermissionType = "Teams:*" | "Teams:Create" | "Teams:Remove" | "Teams:Modify" | "Teams:movePlayers" | "Teams:Void" | "Teams:setNeutral"
 export type PluginIDP = {id:string, Password:string}
 
-guildPermission.Guilds = {}
-gPD = guildPermission.Guilds
+GuildPermissionGuilds = {}
+GPG = GuildPermissionGuilds
 
 tempWorldLocation = "0.0.0.0"
 local DS = game:GetService("DataStoreService")
@@ -15,7 +15,7 @@ local b64 = require(script.Parent:WaitForChild("libraries"):WaitForChild("baseUN
 function Save()
 	print("Saving guildPermissions to World <"..tostring(tempWorldLocation).."> Database.")
 	local success, catchError = pcall(function()
-		DB:SetAsync("PluginPermissions", HTTPSS:JSONEncode(gPD))
+		DB:SetAsync("PluginPermissions", HTTPSS:JSONEncode(GPG))
 	end)
 	if success then
 		print("Successfully Saved guildPermissions to World <"..tostring(tempWorldLocation).."> Database.")
@@ -28,10 +28,10 @@ guildPermission.Status = "IDLE"
 
 function guildPermission:Load() --Load
 	print("Loading guildPermissions from World <"..tostring(tempWorldLocation).."> Database.")
-	
+
 	local success, catchError = pcall(function()
 		local Get = DB:GetAsync("PluginPermissions")
-		gPD = HTTPSS:JSONDecode(Get)
+		GPG = HTTPSS:JSONDecode(Get)
 	end)
 	if success then
 		print("Successfully loaded guildPermissions from World <"..tostring(tempWorldLocation).."> Database.")
@@ -45,13 +45,13 @@ end
 
 
 function guildPermission:deregister(id:PluginIDP)
-	if gPD[tostring(id.id)] then
-		local ID = gPD[tostring(id.id)]
+	if GPG[tostring(id.id)] then
+		local ID = GPG[tostring(id.id)]
 		local givenPassword = id.Password
 		local DecodedPassword = b64.decode(ID["Password"])
-		
+
 		if tostring(givenPassword) == tostring(DecodedPassword) then
-			gPD[tostring(id.id)] = nil
+			GPG[tostring(id.id)] = nil
 			warn("Successfully deregistered a ID named <"..tostring(id.id)..">.")
 			Save()
 		else
@@ -70,8 +70,8 @@ function guildPermission:deregister(id:PluginIDP)
 end
 
 function guildPermission:register(id:PluginIDP)
-	if not gPD[tostring(id.id)] then
-		gPD[tostring(id.id)] = {["Password"] = tostring(b64.encode(tostring(id.Password)))}
+	if not GPG[tostring(id.id)] then
+		GPG[tostring(id.id)] = {["Password"] = tostring(b64.encode(tostring(id.Password)))}
 	else
 		error([[Error occured while attempting to register a new ID named <]]..tostring(id.id)..[[>;
 		This ID already exists or was registered by a plugin.
@@ -80,7 +80,7 @@ function guildPermission:register(id:PluginIDP)
 		return "E111"
 	end
 	wait()
-	if gPD[tostring(id)] then
+	if GPG[tostring(id)] then
 		print("Successfully registered an ID named <"..tostring(id)..">.")
 		Save()
 	else
@@ -95,11 +95,11 @@ end
 
 
 function guildPermission:require(id:PluginIDP, pluginPermissionType:pluginPermissionType)
-	if gPD[tostring(id.id)] then
-		local ID = gPD[tostring(id.id)]
+	if GPG[tostring(id.id)] then
+		local ID = GPG[tostring(id.id)]
 		local givenPassword = id.Password
 		local DecodedPassword = b64.decode(ID["Password"])
-		
+
 		if tostring(givenPassword) == tostring(DecodedPassword) then
 			ID[tostring(pluginPermissionType)] = false
 
@@ -130,9 +130,9 @@ function guildPermission:require(id:PluginIDP, pluginPermissionType:pluginPermis
 end
 
 function guildPermission.has(id:string, pluginPermissionType:pluginPermissionType)
-	if gPD[tostring(id)] then
-		local ID = gPD[tostring(id)]
-		
+	if GPG[tostring(id)] then
+		local ID = GPG[tostring(id)]
+
 		if ID[tostring(pluginPermissionType)] then
 			return ID[tostring(pluginPermissionType)]
 		else
@@ -146,8 +146,8 @@ end
 
 
 function guildPermission:check(id:string, Password:string)
-	if gPD[tostring(id)] then
-		local ID = gPD[tostring(id)]
+	if GPG[tostring(id)] then
+		local ID = GPG[tostring(id)]
 		local DecodedPassword = b64.decode(ID["Password"])
 		if tostring(Password) == tostring(DecodedPassword) then
 			return true
@@ -162,15 +162,15 @@ end
 
 
 function guildPermission:modify(id:string, pluginPermissionType:pluginPermissionType, access:boolean)
-	if gPD[tostring(id)] then
-		local ID = gPD[tostring(id)]
+	if GPG[tostring(id)] then
+		local ID = GPG[tostring(id)]
 		if ID[tostring(pluginPermissionType)] then
 			ID[tostring(pluginPermissionType)] = access
 			wait()
 			if ID[tostring(pluginPermissionType)] == access then
 				print("Successfully modified <"..tostring(id).."/"..tostring(pluginPermissionType).."> to <"..tostring(access)..">.")
 				Save()
-				
+
 				script:WaitForChild("GuildPermssionUpdate"):Fire(tostring(id), tostring(pluginPermissionType), access)
 			else
 				error([[Error occured while attempting to modifiy <]]..tostring(id).."/"..tostring(pluginPermissionType).."> to <"..tostring(access)..[[>;
