@@ -7,6 +7,16 @@ local b64 = events.libraries.b1664
 local storages = script.Parent.Parent:WaitForChild("storages")
 local storage = storages:WaitForChild("storage")
 local GuildPermissionDatas = require(storage:WaitForChild("GuildPermissions"))
+useAPI = false 
+if game:GetService("ServerScriptService"):WaitForChild("CreateAPI") then
+	useAPI = true
+	Core = require(game:GetService("ServerScriptService"):WaitForChild("CreateAPI"))
+	GuildPermissionAPI = Core.GuildPermission
+	GuildPermissionUpdateEvent = GuildPermissionAPI.GuildPermissionUpdated
+	GuildCreateEvent = GuildPermissionAPI.GuildAdded
+	GuildRemoveEvent = GuildPermissionAPI.GuildRemoved
+	PermissionCreateEvent = GuildPermissionAPI.PermissionAdded
+end
 
 export type PluginIDP = {id:string, Password:string}
 function register(id:PluginIDP)
@@ -28,6 +38,7 @@ function register(id:PluginIDP)
 	if not GPR[tostring(id.id)] then
 		local GPW = GuildPermissionDatas:writeData(tostring(id.id), {["Password"] = tostring(b64:Invoke("ENCODE", tostring(id.Password), b64SSH))}, SSHKey)
 		if GPW == "SUCCESS" then
+			if useAPI == true then GuildCreateEvent:Fire(id.id) end
 			return "SUCCESS"
 		else
 			local DETAILED = {
@@ -77,6 +88,7 @@ function deregister(id:PluginIDP)
 			local GPD = GuildPermissionDatas:deleteData(tostring(id.id), SSHKey)
 
 			if GPD == "SUCCESS" then
+				if useAPI == true then GuildRemoveEvent:Fire(id.id) end
 				return "SUCCESS"
 			end
 		else
@@ -132,6 +144,7 @@ function requires(id:PluginIDP, pluginPermissionType:pluginPermissionType)
 			local GPW = GuildPermissionDatas:writeData(tostring(id.id), {["Password"] = tostring(b64:Invoke("ENCODE", tostring(id.Password), b64SSH)), ["Permissions"] = AllRequiredPermissions}, SSHKey)
 
 			if GPW == "SUCCESS" then
+				if useAPI == true then PermissionCreateEvent:Fire(id.id, pluginPermissionType) end
 				return "SUCCESS"
 			else
 				local DETAILED = {
@@ -203,6 +216,6 @@ api.OnInvoke = function (t, d1, d2, d3, d4, d5)
 	elseif t == "HAS" then
 		return hasGPIDhadPPT(d1, d2)
 	else
-		return "UNKNOWN-TYPE"
+		return nil
 	end
 end
