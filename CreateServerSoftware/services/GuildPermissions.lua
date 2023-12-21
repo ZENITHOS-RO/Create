@@ -1,4 +1,5 @@
 --!blank {[b64SSH], [SSHKEY]}
+
 local this = script.Parent.Parent
 local events = require(this:WaitForChild("events"))
 local api = events.GuildPermission.api
