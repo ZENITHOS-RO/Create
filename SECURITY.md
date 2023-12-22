@@ -14,3 +14,4 @@ To check if the version is still **PENDING** or already **PATCHED** and **VERIFI
 | Version | Supported          |
 | ------- | ------------------ |
 | DEMO 1.0   | :white_check_mark: **(VERIFIED)** |
+
