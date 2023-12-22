@@ -217,6 +217,10 @@ api.OnInvoke = function (t, d1, d2, d3, d4, d5)
 	elseif t == "HAS" then
 		return hasGPIDhadPPT(d1, d2)
 	else
-		return nil
+		local DETAILED = {
+			"At BindableEvent arugment input #1, got <"..tostring(t)..">;",
+			"<"..tostring(t).."> is not a valid event from GuildPermissionService;"
+		}
+		system:Invoke("OUTPUT", "create/server/GuildPermission", "core.server.services", "No such as <"..tostring(t).."> type found while attempting to parse GuildPermissionService available events;", 2, DETAILED)
 	end
 end
