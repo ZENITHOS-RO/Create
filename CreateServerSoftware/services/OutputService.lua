@@ -5,15 +5,22 @@ local this = script.Parent.Parent
 local events = require(this:WaitForChild("events"))
 local ClientOutput = events.Console.output
 local api = events.Console.api
-local TS = game:GetService("TestService")
+useAPI = false
+if game:GetService("ServerScriptService"):WaitForChild("CreateAPI") then
+	useAPI = true
+	Core = require(game:GetService("ServerScriptService"):WaitForChild("CreateAPI"))
+	OS = Core.System
+	OutputCreateEvent = OS.OutputCreated
+end
 
+local TS = game:GetService("TestService")
 LatestMessage = {"00:00:00", "noAuthor", "unknownFromer", "nil", 0}
 function output(author:string, from:string, message:string, level:number|nil, detailed:{string}|nil)
 	local timeStamp = tostring(os.date("%X"))
 	ClientOutput:FireAllClients("["..timeStamp.."] ["..tostring(author).."] ["..tostring(from).."]: "..tostring(message), level, detailed)
-	LatestMessage = {timeStamp, author, from, message, level}
-
-	if debugEnabled == true then
+	LatestMessage = {timeStamp, author, from, message, level, detailed}
+	if useAPI then OutputCreateEvent:Fire(timeStamp, author, from, message, level, detailed) end
+	if debugEnabled then
 		if level == 0 then
 			if detailed then
 				print("[INFO] ".."["..timeStamp.."] ["..tostring(author).."] ["..tostring(from).."]: "..tostring(message))
